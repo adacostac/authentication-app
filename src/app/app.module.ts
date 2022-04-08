@@ -12,6 +12,8 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 import { FormsModule } from '@angular/forms';
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,15 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxWebstorageModule.forRoot({
+      prefix: '',
+      separator: ''
+    }),
   ],
-  providers: [],
+  providers: [
+    authInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

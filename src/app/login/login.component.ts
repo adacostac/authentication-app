@@ -5,7 +5,7 @@ import { TokenStorageService } from '../_services/token-storage.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 
 export class LoginComponent implements OnInit {
@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(username, password).subscribe(
       data => {
         this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveRefreshToken(data.refreshToken)
         this.tokenStorage.saveUser(data);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
