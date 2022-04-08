@@ -33,7 +33,8 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
     HttpClientModule,
     NgxWebstorageModule.forRoot({
       prefix: '',
-      separator: ''
+      separator: '',
+      caseSensitive: true
     }),
   ],
   providers: [
