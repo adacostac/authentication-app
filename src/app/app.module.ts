@@ -1,6 +1,7 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,8 +13,10 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 import { FormsModule } from '@angular/forms';
-import { authInterceptorProviders } from './_helpers/auth.interceptor';
-import { NgxWebstorageModule } from 'ngx-webstorage';
+import { AuthProvider, EpFrontendLibModule } from 'ep-frontend-lib';
+import { TokenStorageService } from './_services/token-storage.service';
+import { AuthService } from './_services/auth.service';
+import { EventBusService } from './_shared/event-bus.service';
 
 @NgModule({
   declarations: [
@@ -31,14 +34,16 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgxWebstorageModule.forRoot({
-      prefix: '',
-      separator: '',
-      caseSensitive: true
-    }),
+    EpFrontendLibModule
   ],
   providers: [
-    authInterceptorProviders
+    {
+      provide: HTTP_INTERCEPTORS,
+      useFactory: AuthProvider,
+      deps: [TokenStorageService, AuthService, EventBusService],
+      multi: true
+    }
+
   ],
   bootstrap: [AppComponent]
 })
