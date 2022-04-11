@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenStorageService } from '../_services/token-storage.service';
+import { TokenStorageService } from 'ep-frontend-lib';
 
 @Component({
   selector: 'app-profile',

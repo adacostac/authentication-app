@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
+import { TokenStorageService, EventBusService } from 'ep-frontend-lib';
 import { Subscription } from 'rxjs';
-import { TokenStorageService } from './_services/token-storage.service';
-import { EventBusService } from './_shared/event-bus.service';
 
 @Component({
   selector: 'app-root',

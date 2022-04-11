@@ -1,7 +1,6 @@
+import { EventBusService } from 'ep-frontend-lib';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_services/user.service';
-import { EventBusService } from '../_shared/event-bus.service';
-import { EventData } from '../_shared/event.class';
 
 @Component({
   selector: 'app-board-user',

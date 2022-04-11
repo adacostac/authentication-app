@@ -13,10 +13,13 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 import { FormsModule } from '@angular/forms';
-import { AuthProvider, EpFrontendLibModule } from 'ep-frontend-lib';
-import { TokenStorageService } from './_services/token-storage.service';
-import { AuthService } from './_services/auth.service';
-import { EventBusService } from './_shared/event-bus.service';
+import {
+  AuthProvider,
+  EpFrontendLibModule,
+  TokenStorageService,
+  AuthService,
+  EventBusService
+} from 'ep-frontend-lib';
 
 @NgModule({
   declarations: [
