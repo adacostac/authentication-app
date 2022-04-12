@@ -18,7 +18,9 @@ import {
   EpFrontendLibModule,
   TokenStorageService,
   AuthService,
-  EventBusService
+  EventBusService,
+  TOKEN_HEADER_KEY,
+  ENCRYP_SECURITY_KEY
 } from 'ep-frontend-lib';
 
 @NgModule({
@@ -41,9 +43,18 @@ import {
   ],
   providers: [
     {
+      provide: TOKEN_HEADER_KEY,
+      useValue: 'x-access-token'
+    },
+    {
       provide: HTTP_INTERCEPTORS,
       useFactory: AuthProvider,
-      deps: [TokenStorageService, AuthService, EventBusService],
+      deps: [
+        TokenStorageService,
+        AuthService,
+        EventBusService,
+        TOKEN_HEADER_KEY
+      ],
       multi: true
     }
 
