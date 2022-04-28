@@ -42,6 +42,7 @@ import {
     EpFrontendLibModule
   ],
   providers: [
+    TokenStorageService,
     {
       provide: TOKEN_HEADER_KEY,
       useValue: 'x-access-token'

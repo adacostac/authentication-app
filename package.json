@@ -27,7 +27,7 @@
     "@types/crypto-js": "^4.1.1",
     "bootstrap": "^5.1.3",
     "crypto-js": "^4.1.1",
-    "ep-frontend-lib": "file:../../../ep-frontend-lib/dist/ep-frontend-lib/ep-frontend-lib-0.0.1.tgz",
+    "ep-frontend-lib": "file:../../../ep-frontend-lib/dist/ep-frontend-lib/ep-frontend-lib-1.0.0.tgz",
     "jquery": "^3.6.0",
     "ngx-spinner": "^11.0.2",
     "ngx-webstorage": "^8.0.0",
