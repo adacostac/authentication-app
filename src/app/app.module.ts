@@ -22,6 +22,7 @@ import {
   TOKEN_HEADER_KEY,
   ENCRYP_SECURITY_KEY
 } from 'ep-frontend-lib';
+import { AuthConfigModule } from './auth/auth-config.module';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    EpFrontendLibModule
+    EpFrontendLibModule,
+    AuthConfigModule
   ],
   providers: [
     TokenStorageService,
