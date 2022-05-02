@@ -1,5 +1,7 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { AuthModule, OidcConfigService } from 'angular-auth-oidc-client';
+import { AuthInterceptor, AuthModule, LogLevel, OidcConfigService } from 'angular-auth-oidc-client';
+import { ErrorCatchingFactory, ErrorCatchingInterceptor } from '../_helpers/error-catching.interceptor';
 
 export function configureAuth(oidcConfigService: OidcConfigService): () => Promise<any> {
     return () =>
@@ -13,6 +15,8 @@ export function configureAuth(oidcConfigService: OidcConfigService): () => Promi
             silentRenew: true,
             useRefreshToken: true,
             renewTimeBeforeTokenExpiresInSeconds: 30,
+            secureRoutes: ['http://localhost:8090/api/test/user'],
+            logLevel: LogLevel.Debug
         });
 }
 
@@ -27,6 +31,16 @@ export function configureAuth(oidcConfigService: OidcConfigService): () => Promi
             deps: [OidcConfigService],
             multi: true,
         },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorCatchingInterceptor,
+            multi: true
+        }
     ],
 })
 export class AuthConfigModule { }

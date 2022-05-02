@@ -1,4 +1,5 @@
 
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -14,15 +15,12 @@ import { BoardModeratorComponent } from './board-moderator/board-moderator.compo
 import { BoardUserComponent } from './board-user/board-user.component';
 import { FormsModule } from '@angular/forms';
 import {
-  AuthProvider,
   EpFrontendLibModule,
   TokenStorageService,
-  AuthService,
-  EventBusService,
-  TOKEN_HEADER_KEY,
-  ENCRYP_SECURITY_KEY
 } from 'ep-frontend-lib';
+
 import { AuthConfigModule } from './auth/auth-config.module';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +31,8 @@ import { AuthConfigModule } from './auth/auth-config.module';
     ProfileComponent,
     BoardAdminComponent,
     BoardModeratorComponent,
-    BoardUserComponent
+    BoardUserComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,
@@ -45,22 +44,6 @@ import { AuthConfigModule } from './auth/auth-config.module';
   ],
   providers: [
     TokenStorageService,
-    {
-      provide: TOKEN_HEADER_KEY,
-      useValue: 'x-access-token'
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useFactory: AuthProvider,
-      deps: [
-        TokenStorageService,
-        AuthService,
-        EventBusService,
-        TOKEN_HEADER_KEY
-      ],
-      multi: true
-    }
-
   ],
   bootstrap: [AppComponent]
 })
